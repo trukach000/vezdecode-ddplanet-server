@@ -8,6 +8,7 @@ require (
 	github.com/caarlos0/env/v6 v6.5.0
 	github.com/chi-middleware/logrus-logger v0.2.0
 	github.com/go-chi/chi v4.0.2+incompatible
+	github.com/go-chi/cors v1.2.0
 	github.com/go-openapi/spec v0.20.3 // indirect
 	github.com/go-openapi/swag v0.19.15 // indirect
 	github.com/go-sql-driver/mysql v1.6.0
