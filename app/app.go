@@ -50,6 +50,7 @@ func Setup() *chi.Mux {
 	// API
 	r.Route("/api/v1", func(r chi.Router) {
 		r.Post("/support/request", CreateSupportRequest)
+		r.Get("/support/requests", GetSupportRequests)
 	})
 
 	return r

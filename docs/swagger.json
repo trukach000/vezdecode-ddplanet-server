@@ -10,7 +10,6 @@
         "contact": {},
         "version": "0.1"
     },
-    "basePath": "/api/v1",
     "paths": {
         "/support/request": {
             "post": {
@@ -38,6 +37,74 @@
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/app.CreateSupportRequestOutput"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/httpext.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/httpext.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/support/requests": {
+            "get": {
+                "description": "Get list of support requests according to filter",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get list of support requests",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "limit of requests",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi",
+                        "description": "status to filer in",
+                        "name": "status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "unix timestamp time of creation",
+                        "name": "tsCreatedFrom",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "unix timestamp time of creation",
+                        "name": "tsCreatedTo",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "search by phone or ID",
+                        "name": "search",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/supporting.SupportRequest"
+                            }
                         }
                     },
                     "400": {
@@ -92,6 +159,38 @@
                     "type": "integer"
                 },
                 "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "supporting.SupportRequest": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "type": "string"
+                },
+                "closedTs": {
+                    "type": "integer"
+                },
+                "createdTs": {
+                    "type": "integer"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "secondName": {
+                    "type": "string"
+                },
+                "status": {
                     "type": "string"
                 }
             }

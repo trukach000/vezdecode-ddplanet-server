@@ -3,6 +3,7 @@ module ddplanet-server
 go 1.14
 
 require (
+	github.com/Masterminds/squirrel v1.5.0
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/caarlos0/env/v6 v6.5.0
 	github.com/chi-middleware/logrus-logger v0.2.0
