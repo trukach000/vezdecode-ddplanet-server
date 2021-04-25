@@ -5,6 +5,7 @@ import (
 	"ddplanet-server/pkg/database"
 	"ddplanet-server/pkg/httpext"
 	"ddplanet-server/pkg/swagger"
+	"net/http"
 	"os"
 
 	chilogrus "github.com/chi-middleware/logrus-logger"
@@ -37,14 +38,16 @@ func Setup() *chi.Mux {
 		chilogrus.Logger("logger", log),
 		chim.Recoverer,
 		chim.NoCache,
-		chim.RedirectSlashes,
 		database.NewDatabaseMiddleware(db).Attach,
 	)
 
-	httpext.ServeFile(r, "/photo", "data/photo.jpg")
-
 	r.Get("/swagger/*", swagger.WrapSwagger)
 
+	// frontend files
+	httpext.ServeFile(r, "/site", "./site/index.html")
+	httpext.ServeDir(r, "/site/*", http.Dir("./site"))
+
+	// API
 	r.Route("/api/v1", func(r chi.Router) {
 		r.Post("/support/request", CreateSupportRequest)
 	})
