@@ -40,7 +40,6 @@ func Setup() *chi.Mux {
 		chim.Recoverer,
 		chim.NoCache,
 		database.NewDatabaseMiddleware(db).Attach,
-		cors.CORS(),
 	)
 
 	r.Get("/swagger/*", swagger.WrapSwagger)
