@@ -2,7 +2,6 @@ package app
 
 import (
 	"ddplanet-server/pkg/config"
-	"ddplanet-server/pkg/cors"
 	"ddplanet-server/pkg/database"
 	"ddplanet-server/pkg/httpext"
 	"ddplanet-server/pkg/swagger"
