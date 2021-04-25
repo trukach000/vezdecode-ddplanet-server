@@ -1,0 +1,65 @@
+basePath: /api/v1
+definitions:
+  app.CreateSupportRequestInput:
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      message:
+        type: string
+      phone:
+        type: string
+      secondName:
+        type: string
+    type: object
+  app.CreateSupportRequestOutput:
+    properties:
+      requestId:
+        type: integer
+    type: object
+  httpext.ErrorResponse:
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: An API for front-end
+  title: DDPlanet Server API
+  version: "0.1"
+paths:
+  /support/request:
+    post:
+      consumes:
+      - application/json
+      description: Create new request in DB for further checking
+      parameters:
+      - description: request body
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/app.CreateSupportRequestInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.CreateSupportRequestOutput'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httpext.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httpext.ErrorResponse'
+      summary: Create new request to support
+schemes:
+- http
+- https
+swagger: "2.0"
